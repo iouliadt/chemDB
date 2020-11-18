@@ -1,0 +1,106 @@
+//Class for JMenu 
+import java.awt.Color;
+import java.awt.event.KeyListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTextField;
+
+public class Menu extends JMenu {
+
+	private static final long serialVersionUID = 1L;
+	private Controller controllerObject;
+	private JMenu menu, filter;  
+    private JMenuItem m1, f1, f2, f3, f4, f5, f6, f7;  
+    private JMenuBar mb;
+    private JTextField compoundID;
+	
+	public Menu(Controller controller) {
+		
+		controllerObject = controller;
+		
+		//Menu bar creation
+	    mb=new JMenuBar();  
+	    menu=new JMenu("File");  
+        m1=new JMenuItem("Save As...");
+        m1.addActionListener(controllerObject);
+        
+        //JMenu components-method names
+	    filter=new JMenu("Filter");
+        filter.addActionListener(controllerObject);
+        f1=new JMenuItem("No Filter");
+        f1.addActionListener(controllerObject);
+        f2=new JMenuItem("Lipinski’s Rule of Five");
+        f2.addActionListener(controllerObject);
+        f3=new JMenuItem("Lead-Likeness");
+        f3.addActionListener(controllerObject);
+        f4=new JMenuItem("Bioavailability");
+        f4.addActionListener(controllerObject);
+        f5=new JMenuItem("Custom Lipinski’s Rule of Five");
+        f5.addActionListener(controllerObject);
+        f6=new JMenuItem("Custom Lead-Likeness");
+        f6.addActionListener(controllerObject);
+        f7=new JMenuItem("Custom Bioavailability");
+        f7.addActionListener(controllerObject);
+        filter.add(f1);
+        filter.add(f2);
+        filter.add(f3);
+        filter.add(f4);
+        filter.add(f5);
+        filter.add(f6);
+        filter.add(f7);
+        
+		compoundID = new JTextField("Search Compound", 30);
+		compoundID.addKeyListener((KeyListener) controllerObject);
+		compoundID.setMaximumSize(compoundID.getPreferredSize());
+		compoundID.setHorizontalAlignment(JTextField.CENTER);
+		compoundID.setForeground(Color.GRAY);
+		compoundID.addFocusListener(controllerObject);
+		compoundID.addMouseListener(controllerObject);
+		compoundID.setFocusable(false);
+
+        menu.add(m1); 
+        mb.add(menu);
+        mb.add(filter);
+        mb.add(compoundID);
+         
+	}
+	
+	
+	//getters to communicate with other classes (e.g. Controller class) 
+	
+	public JMenuBar getMenuBar() {
+		return this.mb;
+	}
+	public JMenuItem getSave() {
+		return this.m1;
+	}
+	public JMenu getFilter() {
+		return this.filter;
+	}
+	public JMenuItem getNoFilter() {
+		return this.f1;
+	}
+	public JMenuItem getLipinskiFilter() {
+		return this.f2;
+	}
+	public JMenuItem getLLFilter() {
+		return this.f3;
+	}	
+	public JMenuItem getBioFilter() {
+		return this.f4;
+	}
+	public JMenuItem getCustomLipinskiFilter() {
+		return this.f5;
+	}
+	public JMenuItem getCustomLL() {
+		return this.f6;
+	}
+	public JMenuItem getCustomBio() {
+		return this.f7;
+	}
+	public JTextField getCompoundID() {
+		return this.compoundID;
+	}
+}
